@@ -1,15 +1,27 @@
-public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    //boundary check
-    if(headA == null || headB == null) return null;
-    
-    ListNode a = headA;
-    ListNode b = headB;
-    
-    //if a & b have different len, then we will stop the loop after second iteration
-    while( a != b){
-    	//for the end of first iteration, we just reset the pointer to the head of another linkedlist
-        a = a == null? headB : a.next;
-        b = b == null? headA : b.next;    
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+   
+    public List<Integer> inorderTraversal(TreeNode root) {
+         List<Integer> answer=new ArrayList<>();
+       Stack<TreeNode> s=new Stack<>(); 
+        TreeNode cur=root;
+    while(!s.isEmpty() || cur!=null){
+        while(cur!=null){
+            s.push(cur);
+            cur=cur.left;
+        }
+        cur=s.pop();
+        answer.add(cur.val);
+        cur=cur.right;
     }
-    
-    return 
+        return answer;
+    }
+}
